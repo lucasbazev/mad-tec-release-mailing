@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { SideMenu } from "@/components/app/Menu";
+import { Toaster } from "sonner";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -19,8 +21,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${inter.variable} antialiased`}>
-        {children}
+      <body className={`${inter.variable} ${inter.variable} flex min-h-screen`}>
+        <SideMenu />
+
+        <div className="bg-gray-100 min-h-screen w-full p-4 md:p-8 pb-16 overflow-auto">
+          {children}
+        </div>
+
+        <Toaster />
       </body>
     </html>
   );
