@@ -18,7 +18,7 @@ export const SideMenu = () => {
   const currentUrl = usePathname();
 
   return (
-    <div className="hidden xl:flex flex-col h-screen overflow-y-scroll w-[320px] bg-white px-4 py-8 sticky left-0 top-0 border border-right-gray-200">
+    <div className="hidden xl:flex flex-col h-screen overflow-y-scroll w-[320px] bg-white px-4 py-8 sticky left-0 top-0 border-r border-right-gray-200">
       <p className="font-black">MAD Tec</p>
 
       <div className="flex flex-col gap-y-2 items-stretch mt-12">

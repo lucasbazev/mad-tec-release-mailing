@@ -24,7 +24,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${inter.variable} flex min-h-screen`}>
         <SideMenu />
 
-        <div className="bg-gray-100 min-h-screen w-full p-4 md:p-8 pb-16 overflow-auto">
+        <div className="bg-gray-100 min-h-screen w-full overflow-auto">
           {children}
         </div>
 

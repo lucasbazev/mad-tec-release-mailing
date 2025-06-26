@@ -5,10 +5,12 @@ export default function Home() {
     <div>
       <PageHeader title="Dashboard" />
 
-      <p>
-        Bem-vindo à MAD Tec, startup brasileira e plataforma revolucionária de
-        monitoramento, análise e distribuição de informações em tempo real.
-      </p>
+      <div className="mt-8 p-4 md:p-8 pb-16">
+        <p>
+          Bem-vindo à MAD Tec, startup brasileira e plataforma revolucionária de
+          monitoramento, análise e distribuição de informações em tempo real.
+        </p>
+      </div>
     </div>
   );
 }

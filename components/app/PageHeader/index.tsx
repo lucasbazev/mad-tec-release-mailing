@@ -14,7 +14,7 @@ export const PageHeader = ({
   loadingAction,
 }: IPageHeader) => {
   return (
-    <div className="w-full flex items-center justify-between mb-16 bg-white border border-gray-200 p-4 rounded-xl">
+    <div className="w-full flex items-center justify-between bg-white border-b border-gray-200 px-8 py-6">
       <div>
         <MobileMenu />
         <p className="text-xl font-bold mt-8 xl:mt-0">{title}</p>
