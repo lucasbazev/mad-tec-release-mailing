@@ -9,15 +9,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Ellipsis } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 export function Actions<T extends { id: number }>({ item }: { item: T }) {
   const router = useRouter();
-
-  function handleExportPDF() {
-    alert("Exportar PDF: " + JSON.stringify(item));
-  }
 
   function handleExportDOCX() {
     alert("Exportar DOCX: " + JSON.stringify(item));
@@ -38,8 +35,14 @@ export function Actions<T extends { id: number }>({ item }: { item: T }) {
       <DropdownMenuContent>
         <DropdownMenuLabel>Exportar como:</DropdownMenuLabel>
         <DropdownMenuGroup>
-          <DropdownMenuItem onClick={handleExportPDF}>
-            <p>PDF</p>
+          <DropdownMenuItem>
+            <Link
+              href={`/release-mailing/export/${item.id}/pdf`}
+              target="_blank"
+              className="w-full"
+            >
+              PDF
+            </Link>
           </DropdownMenuItem>
 
           <DropdownMenuItem onClick={handleExportDOCX}>
