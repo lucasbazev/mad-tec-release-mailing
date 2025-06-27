@@ -11,7 +11,6 @@ import {
   type SheetProps,
 } from "@/components/ui/sheet";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export const SideMenu = () => {
@@ -48,9 +47,7 @@ export const MobileMenu = (props: SheetProps) => {
   return (
     <Sheet {...props}>
       <SheetTrigger className="block xl:hidden">
-        <Button variant="outline">
-          <Menu />
-        </Button>
+        <Menu />
       </SheetTrigger>
 
       <SheetContent className="block xl:hidden h-screen px-4">
@@ -58,9 +55,7 @@ export const MobileMenu = (props: SheetProps) => {
           <p className="font-black">MAD Tec</p>
 
           <SheetClose>
-            <Button variant="outline">
-              <X />
-            </Button>
+            <X />
           </SheetClose>
         </SheetHeader>
 

@@ -7,18 +7,20 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
+import { ReactNode } from "react";
 
 interface ITableProps<T> {
   data: T[];
   headers: string[];
   values: (keyof T)[];
   onSelectItem?: (item: T) => void;
+  actions?: ReactNode;
 }
 
 function BooleanCell({ value }: { value: boolean }) {
   return (
     <TableCell className="p-4">
-      <div className="flex items-center justify-center">
+      <div className="">
         <p
           className={cn(
             "px-4 border border-green-500 text-green-500 rounded-full bg-transparent w-fit",
@@ -37,6 +39,7 @@ export function Table<T>({
   headers,
   values,
   onSelectItem,
+  actions,
 }: ITableProps<T>) {
   return (
     <ShadcnTable className="bg-white rounded-md overflow-hidden">
@@ -47,6 +50,10 @@ export function Table<T>({
               {header}
             </TableHead>
           ))}
+
+          {actions && (
+            <TableHead className="text-gray-900 px-4">Ações</TableHead>
+          )}
         </TableRow>
       </TableHeader>
 
@@ -73,6 +80,14 @@ export function Table<T>({
                 </TableCell>
               );
             })}
+
+            {actions && (
+              <TableCell className="p-4">
+                <div className="flex items-center justify-center">
+                  {actions}
+                </div>
+              </TableCell>
+            )}
           </TableRow>
         ))}
       </TableBody>

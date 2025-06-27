@@ -28,7 +28,11 @@ export const PageHeader = ({
             buttonProps.map(
               (button, index) =>
                 !!button && (
-                  <Button key={`header_action_button_${index}`} {...button}>
+                  <Button
+                    key={`header_action_button_${index}`}
+                    className="cursor-pointer"
+                    {...button}
+                  >
                     {button.children}
                   </Button>
                 ),
