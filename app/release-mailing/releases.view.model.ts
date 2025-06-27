@@ -1,16 +1,7 @@
 import { useRouter } from "next/navigation";
-import { useMemo } from "react";
-import { getReleases } from "./release.repository";
-import { MOCKS } from "./releases.config";
-import { Release } from "@/interfaces/Release";
+import { getReleases } from "./releases.repository";
 
 export function useReleasesViewModel() {
-  const releases = useMemo((): Release[] => {
-    const stored = getReleases();
-
-    return [...MOCKS, ...stored];
-  }, []);
-
   const router = useRouter();
 
   const actionButton = [
@@ -26,7 +17,7 @@ export function useReleasesViewModel() {
 
   return {
     actionButton,
-    releases,
+    releases: getReleases(),
     onSelectItem,
   };
 }

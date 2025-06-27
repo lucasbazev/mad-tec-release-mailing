@@ -1,4 +1,5 @@
 export interface Release {
+  id: number;
   title: string;
   eye?: string;
   subtitle?: string;

@@ -39,6 +39,7 @@ export default function NewReleasePage() {
                       className="bg-white"
                     />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -57,6 +58,7 @@ export default function NewReleasePage() {
                       className="bg-white"
                     />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -75,6 +77,7 @@ export default function NewReleasePage() {
                       className="bg-white"
                     />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -95,6 +98,7 @@ export default function NewReleasePage() {
                       }
                     />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -115,7 +119,6 @@ export default function NewReleasePage() {
                         onCheckedChange={field.onChange}
                       />
                     </FormControl>
-
                     <FormMessage />
                   </FormItem>
                 )}
@@ -134,7 +137,6 @@ export default function NewReleasePage() {
                         onCheckedChange={field.onChange}
                       />
                     </FormControl>
-
                     <FormMessage />
                   </FormItem>
                 )}

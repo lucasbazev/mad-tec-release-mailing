@@ -7,19 +7,25 @@ import { PageContainer } from "@/components/app/PageContainer";
 import { useReleasesViewModel } from "./releases.view.model";
 
 export default function ReleaseMailingPage() {
-  const { actionButton, releases, onSelectItem } = useReleasesViewModel();
+  const { actionButton, releases } = useReleasesViewModel();
 
   return (
     <div>
       <PageHeader title="Release & Mailing" buttonProps={actionButton} />
 
       <PageContainer>
-        <Table<Release>
-          data={releases}
-          headers={tableHeaders}
-          values={tableKeyValues}
-          onSelectItem={onSelectItem}
-        />
+        {!!releases.length ? (
+          <Table<Release>
+            data={releases}
+            headers={tableHeaders}
+            values={tableKeyValues}
+          />
+        ) : (
+          <div className="text-center text-gray-500">
+            <p>Nenhum release cadastrado.</p>
+            <p>Você pode cadastrar um novo release clicando no botão acima.</p>
+          </div>
+        )}
       </PageContainer>
     </div>
   );

@@ -6,3 +6,10 @@ export function getReleases(): Release[] {
 
   return releases;
 }
+
+export function deleteRelease(id: number): void {
+  const releases = getReleases();
+  const updatedReleases = releases.filter((release) => release.id !== id);
+
+  localStorage.setItem("releases", JSON.stringify(updatedReleases));
+}

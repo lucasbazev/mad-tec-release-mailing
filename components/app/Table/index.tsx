@@ -7,14 +7,13 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
-import { ReactNode } from "react";
+import { Actions } from "../Actions";
 
 interface ITableProps<T> {
-  data: T[];
+  data: (T & { id: number })[];
   headers: string[];
   values: (keyof T)[];
   onSelectItem?: (item: T) => void;
-  actions?: ReactNode;
 }
 
 function BooleanCell({ value }: { value: boolean }) {
@@ -39,7 +38,6 @@ export function Table<T>({
   headers,
   values,
   onSelectItem,
-  actions,
 }: ITableProps<T>) {
   return (
     <ShadcnTable className="bg-white rounded-md overflow-hidden">
@@ -51,9 +49,7 @@ export function Table<T>({
             </TableHead>
           ))}
 
-          {actions && (
-            <TableHead className="text-gray-900 px-4">Ações</TableHead>
-          )}
+          <TableHead className="text-gray-900 px-4">Ações</TableHead>
         </TableRow>
       </TableHeader>
 
@@ -61,7 +57,7 @@ export function Table<T>({
         {data.map((item, idx) => (
           <TableRow
             key={idx}
-            className="hover:shadow-md hover:cursor-pointer w-full"
+            className="hover:shadow-md w-full"
             onClick={() => onSelectItem && onSelectItem(item)}
           >
             {values.map((valueKey) => {
@@ -81,13 +77,11 @@ export function Table<T>({
               );
             })}
 
-            {actions && (
-              <TableCell className="p-4">
-                <div className="flex items-center justify-center">
-                  {actions}
-                </div>
-              </TableCell>
-            )}
+            <TableCell className="p-4">
+              <div>
+                <Actions item={item} />
+              </div>
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>

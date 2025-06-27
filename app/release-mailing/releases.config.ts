@@ -2,6 +2,7 @@ import { Release } from "@/interfaces/Release";
 
 export const MOCKS: Release[] = [
   {
+    id: Date.now(),
     title: "Nova Atualização do Sistema Operacional Lançada",
     eye: "Tecnologia",
     subtitle: "Desempenho aprimorado e novos recursos de segurança.",
