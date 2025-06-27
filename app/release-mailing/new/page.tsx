@@ -14,9 +14,19 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
+import { ImagePreview } from "@/components/app/ImagePreview";
+import { Images } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export default function NewReleasePage() {
-  const { actionButton, form } = useNewReleaseViewModel();
+  const {
+    actionButton,
+    form,
+    imageInputRef,
+    handleClickImageInput,
+    handleSelectImage,
+    handleClearImage,
+  } = useNewReleaseViewModel();
 
   return (
     <div>
@@ -24,7 +34,7 @@ export default function NewReleasePage() {
 
       <PageContainer>
         <Form {...form}>
-          <div className="space-y-4">
+          <div className="grid lg:grid-cols-3 gap-4">
             <FormField
               control={form.control}
               name="title"
@@ -86,13 +96,13 @@ export default function NewReleasePage() {
               control={form.control}
               name="body"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="col-span-2">
                   <Label className="font-medium">Corpo da matéria</Label>
 
                   <FormControl>
                     <ReactQuill
                       {...field}
-                      className="bg-white"
+                      className="bg-white h-96"
                       onChange={(value) =>
                         field.onChange({ target: { value } })
                       }
@@ -103,7 +113,45 @@ export default function NewReleasePage() {
               )}
             />
 
-            <div className="flex items-center gap-16 mt-16">
+            <div className="space-y-2">
+              <Label>Imagem principal da matéria</Label>
+
+              <div
+                className={cn(
+                  "flex flex-col items-center justify-center w-full h-full rounded-md border border-input bg-white min-h-32 px-4 py-2 text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:outline-none",
+                  !form.watch("image") && "cursor-pointer",
+                )}
+                onClick={handleClickImageInput}
+              >
+                <Input
+                  ref={imageInputRef}
+                  id="image"
+                  name="image"
+                  type="file"
+                  multiple={false}
+                  accept="image/*"
+                  onChange={handleSelectImage}
+                  className="hidden"
+                />
+
+                {!!form.watch("image") ? (
+                  <ImagePreview
+                    url={form.watch("image") as string}
+                    handleDelete={handleClearImage}
+                  />
+                ) : (
+                  <div className="flex flex-col items-center gap-2">
+                    <Images className="text-muted-foreground" size={38} />
+
+                    <Label className="pointer-events-none text-muted-foreground">
+                      Selecione uma imagem para o release
+                    </Label>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="col-span-2 flex items-center justify-between mt-16">
               <FormField
                 control={form.control}
                 name="exclusive"

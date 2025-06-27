@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { ChangeEvent, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { NewReleaseFormDTO, schema } from "./new-release.model";
@@ -13,9 +13,12 @@ const defaultValues = {
   body: "",
   exclusive: false,
   published: true,
+  image: "",
 };
 
 export function useNewReleaseViewModel() {
+  const imageInputRef = useRef<HTMLInputElement>(null);
+
   const router = useRouter();
 
   const form = useForm<NewReleaseFormDTO>({
@@ -25,6 +28,26 @@ export function useNewReleaseViewModel() {
 
   const isExclusive = form.watch("exclusive");
   const isPublished = form.watch("published");
+
+  function handleClickImageInput() {
+    if (imageInputRef.current) {
+      imageInputRef.current.click();
+    }
+  }
+
+  function handleSelectImage(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+
+    if (!file) return;
+
+    const imageUrl = URL.createObjectURL(file);
+    console.log("Selected file:", imageUrl);
+    form.setValue("image", imageUrl);
+  }
+
+  function handleClearImage() {
+    form.setValue("image", "");
+  }
 
   async function handleSave(values: NewReleaseFormDTO) {
     try {
@@ -60,6 +83,9 @@ export function useNewReleaseViewModel() {
   return {
     actionButton,
     form,
-    handleSave,
+    imageInputRef,
+    handleClickImageInput,
+    handleSelectImage,
+    handleClearImage,
   };
 }

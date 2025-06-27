@@ -7,6 +7,7 @@ export const schema = z.object({
   body: z.string().min(1, "Corpo é obrigatório"),
   exclusive: z.boolean(),
   published: z.boolean(),
+  image: z.string().optional(),
 });
 
 export type NewReleaseFormDTO = z.infer<typeof schema>;
