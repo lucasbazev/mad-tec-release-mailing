@@ -2,7 +2,6 @@
 import { PageContainer } from "@/components/app/PageContainer";
 import { PageHeader } from "@/components/app/PageHeader";
 import { Label } from "@/components/ui/label";
-import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css";
 import { useNewReleaseViewModel } from "./new-release.view.model";
 import {
@@ -17,6 +16,7 @@ import { Switch } from "@/components/ui/switch";
 import { ImagePreview } from "@/components/app/ImagePreview";
 import { Images } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { DynamicQuillEditor } from "@/components/app/DynamicQuill";
 
 export default function NewReleasePage() {
   const {
@@ -100,7 +100,7 @@ export default function NewReleasePage() {
                   <Label className="font-medium">Corpo da matéria</Label>
 
                   <FormControl>
-                    <ReactQuill
+                    <DynamicQuillEditor
                       {...field}
                       className="bg-white h-96"
                       onChange={(value) =>

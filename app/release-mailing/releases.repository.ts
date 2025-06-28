@@ -1,6 +1,8 @@
 import { Release } from "@/interfaces/Release";
 
 export function getReleases(): Release[] {
+  if (typeof window === "undefined") return [];
+
   const stored = localStorage.getItem("releases");
   const releases = stored ? JSON.parse(stored) : [];
 

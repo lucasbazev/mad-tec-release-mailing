@@ -11,7 +11,11 @@ export function useExportPDFViewModel(id: string) {
   }
 
   useEffect(() => {
-    window.print();
+    const timeout = setTimeout(() => {
+      window.print();
+    }, 500);
+
+    return () => timeout && clearTimeout(timeout);
   }, []);
 
   return {
