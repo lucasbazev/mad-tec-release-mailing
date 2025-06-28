@@ -8,16 +8,30 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Release } from "@/interfaces/Release";
+import { generateDOCXFile } from "@/utils/generateDOCXFile";
 import { Ellipsis } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { asBlob } from "html-docx-js-typescript";
+import { saveAs } from "file-saver";
 
 export function Actions<T extends { id: number }>({ item }: { item: T }) {
   const router = useRouter();
 
-  function handleExportDOCX() {
-    alert("Exportar DOCX: " + JSON.stringify(item));
+  async function handleExportDOCX() {
+    try {
+      const releaseItem = item as unknown as Release;
+      const html = generateDOCXFile(releaseItem);
+      const doc = (await asBlob(html)) as Blob;
+
+      saveAs(doc, `${releaseItem.title}.docx`);
+      toast.success("Release exportado como DOCX com sucesso!");
+    } catch (error) {
+      console.error("Erro ao exportar release como DOCX:", error);
+      toast.error("Erro ao exportar release como DOCX.");
+    }
   }
 
   function handleDelete() {

@@ -5,6 +5,7 @@ import { NewReleaseFormDTO, schema } from "./new-release.model";
 import { toast } from "sonner";
 import { saveNewRelease } from "./new-release.repository";
 import { useRouter } from "next/navigation";
+import { fileToBase64 } from "@/utils/fileToBase64";
 
 const defaultValues = {
   title: "",
@@ -35,14 +36,14 @@ export function useNewReleaseViewModel() {
     }
   }
 
-  function handleSelectImage(event: ChangeEvent<HTMLInputElement>) {
+  async function handleSelectImage(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
 
     if (!file) return;
 
-    const imageUrl = URL.createObjectURL(file);
-    console.log("Selected file:", imageUrl);
-    form.setValue("image", imageUrl);
+    // const imageUrl = URL.createObjectURL(file);
+    const imageBase64 = await fileToBase64(file);
+    form.setValue("image", imageBase64);
   }
 
   function handleClearImage() {

@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   title: {
-    fontSize: 24,
+    fontSize: 16,
     textAlign: "center",
     marginBottom: 10,
     fontWeight: "bold",
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   subtitle: {
-    fontSize: 16,
+    fontSize: 12,
     textAlign: "center",
     marginBottom: 15,
   },
@@ -70,7 +70,6 @@ export default function ExportPDFPage(props: {
       <Document>
         <Page size="A4" style={styles.page}>
           <View style={styles.section}>
-            {/* 💡 Aplique os estilos diretamente */}
             {release.title && <Text style={styles.title}>{release.title}</Text>}
             {release.eye && <Text style={styles.eye}>{release.eye}</Text>}
             {release.subtitle && (

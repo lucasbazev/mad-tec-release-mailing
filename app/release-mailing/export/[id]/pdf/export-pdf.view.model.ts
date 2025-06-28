@@ -1,4 +1,5 @@
 import { getReleases } from "@/app/release-mailing/releases.repository";
+import { useEffect } from "react";
 
 export function useExportPDFViewModel(id: string) {
   if (!id) window.close();
@@ -8,6 +9,10 @@ export function useExportPDFViewModel(id: string) {
   if (!release) {
     window.close();
   }
+
+  useEffect(() => {
+    window.print();
+  }, []);
 
   return {
     release,
